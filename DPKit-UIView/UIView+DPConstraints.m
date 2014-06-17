@@ -7,11 +7,47 @@
 #import "NSLayoutConstraint+DPUtils.h"
 
 @implementation UIView (DPConstraints)
-
+//
+//- (NSLayoutConstraint *) superTopLayoutGuideConstraint {
+//    return nil;
+//}
+//
+//- (void) updateSuperTopLayoutGuideConstraint: (CGFloat) constant {
+//    [self.view addConstraint: [NSLayoutConstraint constraintWithItem: view attribute: NSLayoutAttributeTop relatedBy: NSLayoutRelationEqual toItem: self.topLayoutGuide attribute: NSLayoutAttributeTop multiplier: 1.0 constant: 0.0]];
+//    [self.view addConstraint: [NSLayoutConstraint constraintWithItem: view attribute: NSLayoutAttributeBottom relatedBy: NSLayoutRelationEqual toItem: self.bottomLayoutGuide attribute: NSLayoutAttributeBottom multiplier: 1.0 constant: 0.0]];
+//
+//    NSLayoutConstraint *ret = nil;
+//    if (self.superview) {
+//        ret = [self superTopLayoutGuideConstraint];
+//        if (ret == nil) {
+//            ret = [NSLayoutConstraint constraintWithItem: self
+//                    attribute: NSLayoutAttributeTop
+//                    relatedBy: NSLayoutRelationEqual
+//                    toItem: self.superview
+//                    attribute: NSLayoutAttributeTop
+//                    multiplier: 1
+//                    constant: constant];
+//            [self.superview addConstraint: ret];
+//
+//        }
+//        ret.constant = constant;
+//    } else {
+//        //        NSException *exception = [NSException exceptionWithName: @"Superview Exception"
+//        //                                                         reason: [NSString stringWithFormat: @"%@ has no superview. (%@)", self, self.superview]
+//        //                                                       userInfo: nil];
+//        //
+//        //        [exception raise];
+//
+//
+//        NSLog(@"No superview.");
+//
+//    }
+//
+//    return ret;
+//}
 
 
 #pragma mark Super Insets
-
 
 - (NSArray *) updateSuperConstraintsWithInsets: (UIEdgeInsets) insets {
     NSMutableArray *ret = [[NSMutableArray alloc] init];
@@ -32,17 +68,17 @@
     [ret addObject: [self updateSuperTrailingConstraint: constant]];
 
 
-//    constraint = [self updateSuperTopConstraint: constant];
-//    if (constraint) [ret addObject: constraint];
-//
-//    constraint = [self updateSuperBottomConstraint: constant];
-//    if (constraint) [ret addObject: constraint];
-//
-//    constraint = [self updateSuperLeadingConstraint: constant];
-//    if (constraint) [ret addObject: constraint];
-//
-//    constraint = [self updateSuperTrailingConstraint: constant];
-//    if (constraint) [ret addObject: constraint];
+    //    constraint = [self updateSuperTopConstraint: constant];
+    //    if (constraint) [ret addObject: constraint];
+    //
+    //    constraint = [self updateSuperBottomConstraint: constant];
+    //    if (constraint) [ret addObject: constraint];
+    //
+    //    constraint = [self updateSuperLeadingConstraint: constant];
+    //    if (constraint) [ret addObject: constraint];
+    //
+    //    constraint = [self updateSuperTrailingConstraint: constant];
+    //    if (constraint) [ret addObject: constraint];
 
     return ret;
 }
@@ -60,12 +96,12 @@
         ret = [self superCenterXConstraint];
         if (ret == nil) {
             ret = [NSLayoutConstraint constraintWithItem: self
-                                               attribute: NSLayoutAttributeCenterX
-                                               relatedBy: NSLayoutRelationEqual
-                                                  toItem: self.superview
-                                               attribute: NSLayoutAttributeCenterX
-                                              multiplier: 1
-                                                constant: constant];
+                    attribute: NSLayoutAttributeCenterX
+                    relatedBy: NSLayoutRelationEqual
+                    toItem: self.superview
+                    attribute: NSLayoutAttributeCenterX
+                    multiplier: 1
+                    constant: constant];
             [self.superview addConstraint: ret];
         }
         ret.constant = constant;
@@ -87,12 +123,12 @@
         ret = [self superCenterYConstraint];
         if (ret == nil) {
             ret = [NSLayoutConstraint constraintWithItem: self
-                                               attribute: NSLayoutAttributeCenterY
-                                               relatedBy: NSLayoutRelationEqual
-                                                  toItem: self.superview
-                                               attribute: NSLayoutAttributeCenterY
-                                              multiplier: 1
-                                                constant: constant];
+                    attribute: NSLayoutAttributeCenterY
+                    relatedBy: NSLayoutRelationEqual
+                    toItem: self.superview
+                    attribute: NSLayoutAttributeCenterY
+                    multiplier: 1
+                    constant: constant];
             [self.superview addConstraint: ret];
         }
         ret.constant = constant;
@@ -115,12 +151,12 @@
         ret = [self superLeadingConstraint];
         if (ret == nil) {
             ret = [NSLayoutConstraint constraintWithItem: self
-                                               attribute: NSLayoutAttributeLeading
-                                               relatedBy: NSLayoutRelationEqual
-                                                  toItem: self.superview
-                                               attribute: NSLayoutAttributeLeading
-                                              multiplier: 1
-                                                constant: constant];
+                    attribute: NSLayoutAttributeLeading
+                    relatedBy: NSLayoutRelationEqual
+                    toItem: self.superview
+                    attribute: NSLayoutAttributeLeading
+                    multiplier: 1
+                    constant: constant];
             [self.superview addConstraint: ret];
         }
         ret.constant = constant;
@@ -142,12 +178,12 @@
         ret = [self superTrailingConstraint];
         if (ret == nil) {
             ret = [NSLayoutConstraint constraintWithItem: self.superview
-                                               attribute: NSLayoutAttributeTrailing
-                                               relatedBy: NSLayoutRelationEqual
-                                                  toItem: self
-                                               attribute: NSLayoutAttributeTrailing
-                                              multiplier: 1
-                                                constant: constant];
+                    attribute: NSLayoutAttributeTrailing
+                    relatedBy: NSLayoutRelationEqual
+                    toItem: self
+                    attribute: NSLayoutAttributeTrailing
+                    multiplier: 1
+                    constant: constant];
             [self.superview addConstraint: ret];
         }
         ret.constant = constant;
@@ -171,22 +207,22 @@
         ret = [self superTopConstraint];
         if (ret == nil) {
             ret = [NSLayoutConstraint constraintWithItem: self
-                                               attribute: NSLayoutAttributeTop
-                                               relatedBy: NSLayoutRelationEqual
-                                                  toItem: self.superview
-                                               attribute: NSLayoutAttributeTop
-                                              multiplier: 1
-                                                constant: constant];
+                    attribute: NSLayoutAttributeTop
+                    relatedBy: NSLayoutRelationEqual
+                    toItem: self.superview
+                    attribute: NSLayoutAttributeTop
+                    multiplier: 1
+                    constant: constant];
             [self.superview addConstraint: ret];
 
         }
         ret.constant = constant;
     } else {
-//        NSException *exception = [NSException exceptionWithName: @"Superview Exception"
-//                                                         reason: [NSString stringWithFormat: @"%@ has no superview. (%@)", self, self.superview]
-//                                                       userInfo: nil];
-//
-//        [exception raise];
+        //        NSException *exception = [NSException exceptionWithName: @"Superview Exception"
+        //                                                         reason: [NSString stringWithFormat: @"%@ has no superview. (%@)", self, self.superview]
+        //                                                       userInfo: nil];
+        //
+        //        [exception raise];
 
 
         NSLog(@"No superview.");
@@ -211,12 +247,12 @@
         ret = [self superBottomConstraint];
         if (ret == nil) {
             ret = [NSLayoutConstraint constraintWithItem: self.superview
-                                               attribute: NSLayoutAttributeBottom
-                                               relatedBy: NSLayoutRelationEqual
-                                                  toItem: self
-                                               attribute: NSLayoutAttributeBottom
-                                              multiplier: 1
-                                                constant: constant];
+                    attribute: NSLayoutAttributeBottom
+                    relatedBy: NSLayoutRelationEqual
+                    toItem: self
+                    attribute: NSLayoutAttributeBottom
+                    multiplier: 1
+                    constant: constant];
             [self.superview addConstraint: ret];
 
         }
@@ -243,12 +279,12 @@
         ret = [self superHeightConstraint];
         if (ret == nil) {
             ret = [NSLayoutConstraint constraintWithItem: self.superview
-                                               attribute: NSLayoutAttributeHeight
-                                               relatedBy: NSLayoutRelationEqual
-                                                  toItem: self
-                                               attribute: NSLayoutAttributeHeight
-                                              multiplier: 1
-                                                constant: constant];
+                    attribute: NSLayoutAttributeHeight
+                    relatedBy: NSLayoutRelationEqual
+                    toItem: self
+                    attribute: NSLayoutAttributeHeight
+                    multiplier: 1
+                    constant: constant];
             [self.superview addConstraint: ret];
         }
         ret.constant = constant;
@@ -262,12 +298,12 @@
     NSLayoutConstraint *ret = nil;
     if (self.superview) {
         ret = [NSLayoutConstraint constraintWithItem: self.superview
-                                           attribute: attribute
-                                           relatedBy: NSLayoutRelationEqual
-                                              toItem: self
-                                           attribute: attribute
-                                          multiplier: 1
-                                            constant: 0];
+                attribute: attribute
+                relatedBy: NSLayoutRelationEqual
+                toItem: self
+                attribute: attribute
+                multiplier: 1
+                constant: 0];
         [self.superview addConstraint: ret];
     }
 
@@ -298,12 +334,12 @@
     NSLayoutConstraint *ret = [self heightConstraint];
     if (ret == nil) {
         ret = [NSLayoutConstraint constraintWithItem: self
-                                           attribute: NSLayoutAttributeHeight
-                                           relatedBy: NSLayoutRelationEqual
-                                              toItem: nil
-                                           attribute: NSLayoutAttributeNotAnAttribute
-                                          multiplier: 1
-                                            constant: constant];
+                attribute: NSLayoutAttributeHeight
+                relatedBy: NSLayoutRelationEqual
+                toItem: nil
+                attribute: NSLayoutAttributeNotAnAttribute
+                multiplier: 1
+                constant: constant];
         [self addConstraint: ret];
     }
 
@@ -320,12 +356,12 @@
     NSLayoutConstraint *ret = [self staticWidthConstraint];
     if (ret == nil) {
         ret = [NSLayoutConstraint constraintWithItem: self
-                                           attribute: NSLayoutAttributeWidth
-                                           relatedBy: NSLayoutRelationEqual
-                                              toItem: nil
-                                           attribute: NSLayoutAttributeNotAnAttribute
-                                          multiplier: 1
-                                            constant: constant];
+                attribute: NSLayoutAttributeWidth
+                relatedBy: NSLayoutRelationEqual
+                toItem: nil
+                attribute: NSLayoutAttributeNotAnAttribute
+                multiplier: 1
+                constant: constant];
         [self addConstraint: ret];
     }
 
@@ -366,12 +402,12 @@
         ret = [self superWidthConstraint];
         if (ret == nil) {
             ret = [NSLayoutConstraint constraintWithItem: self
-                                               attribute: NSLayoutAttributeWidth
-                                               relatedBy: NSLayoutRelationEqual
-                                                  toItem: self.superview
-                                               attribute: NSLayoutAttributeWidth
-                                              multiplier: 1
-                                                constant: constant];
+                    attribute: NSLayoutAttributeWidth
+                    relatedBy: NSLayoutRelationEqual
+                    toItem: self.superview
+                    attribute: NSLayoutAttributeWidth
+                    multiplier: 1
+                    constant: constant];
             [self.superview addConstraint: ret];
 
         }
@@ -421,12 +457,12 @@
         ret = [self equalWidthConstraintForSibling: item];
         if (ret == nil) {
             ret = [NSLayoutConstraint constraintWithItem: self
-                                               attribute: NSLayoutAttributeWidth
-                                               relatedBy: NSLayoutRelationEqual
-                                                  toItem: item
-                                               attribute: NSLayoutAttributeWidth
-                                              multiplier: 1.0
-                                                constant: constant];
+                    attribute: NSLayoutAttributeWidth
+                    relatedBy: NSLayoutRelationEqual
+                    toItem: item
+                    attribute: NSLayoutAttributeWidth
+                    multiplier: 1.0
+                    constant: constant];
             [self.superview addConstraint: ret];
         }
     }
@@ -487,12 +523,12 @@
 
     if (self.superview) {
         ret = [NSLayoutConstraint constraintWithItem: self
-                                           attribute: NSLayoutAttributeTrailing
-                                           relatedBy: NSLayoutRelationEqual
-                                              toItem: sibling
-                                           attribute: attribute
-                                          multiplier: 1.0
-                                            constant: 0];
+                attribute: NSLayoutAttributeTrailing
+                relatedBy: NSLayoutRelationEqual
+                toItem: sibling
+                attribute: attribute
+                multiplier: 1.0
+                constant: 0];
         [self.superview addConstraint: ret];
     }
     return ret;
@@ -510,7 +546,6 @@
         for (NSLayoutConstraint *constraint in constraints) {
             if (constraint.firstItem == self && constraint.firstAttribute == attribute) {
 
-
                 if (constraint.secondItem == self.superview && constraint.secondAttribute == attribute) {
                     ret = constraint;
                     break;
@@ -524,7 +559,6 @@
                     }
                 }
             }
-
 
             else if (constraint.secondItem == self && constraint.secondAttribute == attribute) {
                 if (constraint.firstItem == self.superview && constraint.firstAttribute == attribute) {
@@ -541,7 +575,6 @@
                     break;
 
                 }
-
 
             }
         }

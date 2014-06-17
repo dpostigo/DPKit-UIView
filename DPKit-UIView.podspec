@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DPKit-UIView"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "DPKit-UIView"
   s.homepage     = "http://dpostigo.com"
   s.license      = 'BSD'
