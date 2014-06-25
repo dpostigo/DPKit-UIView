@@ -61,7 +61,8 @@
 
 - (NSArray *) updateSuperEdgeConstraints: (CGFloat) constant {
     NSMutableArray *ret = [[NSMutableArray alloc] init];
-    NSLayoutConstraint *constraint = nil;
+//    NSLayoutConstraint *constraint = nil;
+    
     [ret addObject: [self updateSuperTopConstraint: constant]];
     [ret addObject: [self updateSuperBottomConstraint: constant]];
     [ret addObject: [self updateSuperLeadingConstraint: constant]];
