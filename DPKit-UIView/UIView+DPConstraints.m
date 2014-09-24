@@ -61,8 +61,8 @@
 
 - (NSArray *) updateSuperEdgeConstraints: (CGFloat) constant {
     NSMutableArray *ret = [[NSMutableArray alloc] init];
-//    NSLayoutConstraint *constraint = nil;
-    
+    //    NSLayoutConstraint *constraint = nil;
+
     [ret addObject: [self updateSuperTopConstraint: constant]];
     [ret addObject: [self updateSuperBottomConstraint: constant]];
     [ret addObject: [self updateSuperLeadingConstraint: constant]];
@@ -192,6 +192,67 @@
 
     return ret;
 }
+
+
+#pragma mark - TopLayout
+
+- (NSLayoutConstraint *) superTopGuideConstraint {
+    __block NSLayoutConstraint *ret = nil;
+
+    if (self.superview) {
+        NSArray *constraints = [NSArray arrayWithArray: self.superview.constraints];
+
+        [constraints enumerateObjectsUsingBlock: ^(NSLayoutConstraint *constraint, NSUInteger index, BOOL *stop) {
+            if (constraint.firstItem == self) {
+                NSString *secondItemString = NSStringFromClass([constraint.secondItem class]);
+                if ([secondItemString isEqualToString: @"_UILayoutGuide"]) {
+                    ret = constraint;
+                    *stop = YES;
+                }
+            } else if (constraint.secondItem == self) {
+                NSString *firstItemString = NSStringFromClass([constraint.firstItem class]);
+                if ([firstItemString isEqualToString: @"_UILayoutGuide"]) {
+                    ret = constraint;
+                    *stop = YES;
+                }
+            }
+        }];
+    }
+    return ret;
+}
+
+//
+//- (void) updateSuperTopGuideConstraint: (CGFloat) constant {
+//    NSLayoutConstraint *ret = nil;
+//    if (self.superview) {
+//        ret = [self superTopGuideConstraint];
+//        if (ret == nil) {
+//            ret = [NSLayoutConstraint constraintWithItem: self
+//                    attribute: NSLayoutAttributeTop
+//                    relatedBy: NSLayoutRelationEqual
+//                    toItem: self.superview
+//                    attribute: NSLayoutAttributeTop
+//                    multiplier: 1
+//                    constant: constant];
+//            [self.superview addConstraint: ret];
+//
+//        }
+//        ret.constant = constant;
+//    } else {
+//        //        NSException *exception = [NSException exceptionWithName: @"Superview Exception"
+//        //                                                         reason: [NSString stringWithFormat: @"%@ has no superview. (%@)", self, self.superview]
+//        //                                                       userInfo: nil];
+//        //
+//        //        [exception raise];
+//
+//
+//        NSLog(@"No superview.");
+//
+//    }
+//
+//    return ret;
+//
+//}
 
 
 
@@ -567,15 +628,22 @@
                     break;
                 }
 
-                NSString *firstItemString = NSStringFromClass([constraint.firstItem class]);
-
-                if (attribute == NSLayoutAttributeBottom
-                        && [firstItemString isEqualToString: @"_UILayoutGuide"]
-                        && constraint.firstAttribute == NSLayoutAttributeTop) {
-                    ret = constraint;
-                    break;
+                if (attribute == NSLayoutAttributeTop || attribute == NSLayoutAttributeBottom) {
+                    NSString *firstItemString = NSStringFromClass([constraint.firstItem class]);
+                    if ([firstItemString isEqualToString: @"_UILayoutGuide"] && constraint.secondAttribute == attribute) {
+                        ret = constraint;
+                        break;
+                    }
 
                 }
+
+                //                if (attribute == NSLayoutAttributeBottom
+                //                        && [firstItemString isEqualToString: @"_UILayoutGuide"]
+                //                        && constraint.firstAttribute == NSLayoutAttributeTop) {
+                //                    ret = constraint;
+                //                    break;
+                //
+                //                }
 
             }
         }
@@ -583,5 +651,23 @@
 
     return ret;
 
+}
+
+
+- (void) removeConstraintsAffectingItem: (UIView *) subview {
+    NSArray *constraints = [self constraintsAffectingItem: subview];
+    [self removeConstraints: constraints];
+}
+
+- (NSArray *) constraintsAffectingItem: (UIView *) subview {
+    NSArray *constraints = self.constraints;
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    [constraints enumerateObjectsUsingBlock: ^(NSLayoutConstraint *constraint, NSUInteger index, BOOL *stop) {
+        if (constraint.firstItem == subview || constraint.secondItem == subview) {
+            [ret addObject: constraint];
+        }
+    }];
+
+    return ret;
 }
 @end

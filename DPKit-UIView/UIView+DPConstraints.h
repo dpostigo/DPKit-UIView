@@ -17,6 +17,7 @@
 - (NSLayoutConstraint *) superLeadingConstraint;
 - (NSLayoutConstraint *) superTrailingConstraint;
 - (NSLayoutConstraint *) updateSuperTrailingConstraint: (CGFloat) constant;
+- (NSLayoutConstraint *) superTopGuideConstraint;
 - (NSLayoutConstraint *) updateSuperTopConstraint: (CGFloat) constant;
 - (NSLayoutConstraint *) superTopConstraint;
 - (NSLayoutConstraint *) superBottomConstraint;
@@ -33,4 +34,6 @@
 - (NSLayoutConstraint *) anyWidthConstraint;
 - (NSLayoutConstraint *) updateTrailingConstraint: (CGFloat) constant toSibling: (id) sibling;
 - (NSLayoutConstraint *) updateTrailingConstraint: (CGFloat) constant toSibling: (id) sibling attribute: (NSLayoutAttribute) attribute;
+- (void) removeConstraintsAffectingItem: (UIView *) subview;
+- (NSArray *) constraintsAffectingItem: (UIView *) subview;
 @end
